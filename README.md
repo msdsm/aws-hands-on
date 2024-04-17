@@ -1,0 +1,2 @@
+# AWSクラインハンズオン
+- lambda, ecs, ecrをまずはやる
