@@ -1,0 +1,56 @@
+# クラインAWSハンズオンECS, ECR
+
+## ソース
+- https://www.youtube.com/watch?v=2_FxLp9xgmo&list=PLS0SWeRoWAzEo2RffpYiRSSdHmQnTQl95&index=4
+
+## ワークフロー
+- Dockerfile作成
+  - nginxをもとにイメージ作成
+  - src/index.htmlをnginxのhtmlディレクトリにもっていく
+- イメージ作成
+  - `docker build . -t hello-world-ecs`
+  - tオプションでイメージ名を指定可能
+- ローカル実行
+  - `docker run --rm -p 8080:80 hello-world-ecs`
+  - `docker run image名`でコンテナ起動
+  - rmオプション : コンテナ終了時にコンテナを自動的に削除
+  - pオプション : ポートマッピング
+- ECRのリポジトリをコンソールから作成
+- コンソールにあるプッシュコマンドをコピペ
+  - windowsでもlinux terminalを起動してmacOS/Linuxコマンドをコピペすればよい
+  - 以下のエラーがでた
+    - Unable to locate credentials. You can configure credentials by running "aws configure".Error: Cannot perform an interactive login from a non TTY device
+    - ~/.aws/configと~/.aws/credentialsを確認すると正しく登録されていた
+    - `aws configure list`を見るとなかった
+    - そのため、awsコマンドに`--profile msd_user`というprofileオプションでIAMユーザーを明示するとうまくいく
+    - `aws ecr get-login-password --region ap-northeast-1 --profile msd_user | docker login --username AWS --password-stdin 730335369621.dkr.ecr.ap-northeast-1.amazonaws.com`
+    - うまくいくと、Login Succeededと表示される
+    - 続いてプッシュコマンドを順にコピペする
+      - イメージ作成(もうやったから省略)
+      - tag付け
+      - push
+- コンソールでネットワーク設定
+  - VPC作成
+  - サブネット作成
+  - インターネットゲートウェイ作成
+    - 作成後にアクションからVPCにアタッチを選択
+  - ルートテーブル作成
+    - 作成後にルートの編集を選択
+    - 送信先0.0.0.0/0(すべてのIPアドレス)に対してターゲットを先ほど作成したIGWにする
+    - サブネットの関連付けから先ほどのサブネットを選択
+      - サブネット名について、ルートテーブルから関連付けするものはpublicをつけて、関連付けしないものは名前にprivateをいれるとわかりやすい
+- コンソールでECSポチポチする
+  - クラスターの作成(作成が完了するまで画面遷移させずに待つ、少し時間かかる)
+  - タスク定義の作成
+    - port80にする
+    - ECRで先ほど作成したURIをコピペ
+    - コンテナ名定義
+    - ほかにも環境変数などあり、ローカルのdocker-compose.ymlに似ている
+- クラスターからサービスの作成をクリック
+  - キャパシティープロバイダー戦略ではなく起動タイプを選択
+    - FARGATEを選択
+  - アプリケーションタイプでサービスではなくタスクを選択
+    - 先ほど作成したタスクを選択
+  - セキュリティグループを作成
+  - うまく作成されると、クラスターの中でタスクタグに作成したものが入る
+  - ステータスが実行中になってからパブリックIPアドレスにポート80でアクセスすると表示される
