@@ -7,7 +7,7 @@ import (
 )
 
 func handler(c echo.Context) error {
-	return c.JSON(http.StatusOK, map[string]string{"message": "hello"})
+	return c.JSON(http.StatusOK, map[string]string{"message": "hello from code pipeline"})
 }
 
 func newRouter() *echo.Echo {

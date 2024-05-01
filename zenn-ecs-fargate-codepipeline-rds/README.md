@@ -71,10 +71,35 @@
   - ターゲットグループもう一つ作成
   - ALBのリスナールールを編集してターゲットグループ追加
 - CodePipelineによる実行ではタスク定義をjsonファイルで作成する必要があるため以下やる
+  - コンソールからタスク定義ひらく
+  - jsonファイルひらく
+  - コピーしてローカルファイルにペースト
+- ローカルで以下3つのファイル必要
+  - taskdef.json
+  - buildspec.yml
+  - appspec.yaml
 ### CodeBuild プロジェクトの作成
+- githubアカウント登録してbuildspec.ymlのパスを与える
 ### CodeDeploy アプリケーションの作成
+- ECSのクラスターからサービスの作成をクリック
+- デプロイメントタイプからblue/greenデプロイメント(AWS CodeDeployを使用)をクリック
+- IAMロールでCodedeploy for ecsのロールを作成しておく必要がある
+- 以降は普通のサービス作成と同じくポチポチする
+- 作成後にCodeDeployコンソールのアプリケーションに作成されていることを確認
 ### CodePipelineの設定
+- codepipelineの作成
+  - githubに接続してリポジトリとブランチを選択
+  - code buildで作成したもの選択
+  - code deployで作成したもの選択
 ## 自分用メモ
 ### VPCエンドポイントとは
 - VPCとほかのサービス間の通信を可能にするVPCコンポーネントのこと
 - VPCエンドポイントを作成することで、VPC内のインスタンスとVPC外のサービスをプライベート接続できるようになる
+### code兄弟について
+- もっと詳細に調べる
+### taskdef.json
+- 意味不明
+### buildspec.yml
+- 意味不明
+### appspec.yaml
+- 意味不明
