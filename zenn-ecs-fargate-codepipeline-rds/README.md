@@ -91,6 +91,13 @@
   - githubに接続してリポジトリとブランチを選択
   - code buildで作成したもの選択
   - code deployで作成したもの選択
+### 動作確認
+- 実際にapiのソース変更してpush
+- awsコンソールでcode pipelineみてみる
+  - code buildで失敗している
+  - docker loginする際に、--profile msd_userで認証しようとしているが、credentialsに登録されていないからできていないと思われる
+  - これはどこで実行されているのか？
+  - github上で実行されていそうなので、github上でsecret keyとか登録すればいける？
 ## 自分用メモ
 ### VPCエンドポイントとは
 - VPCとほかのサービス間の通信を可能にするVPCコンポーネントのこと
