@@ -1,2 +1,1 @@
-# AWSクラインハンズオン
-- lambda, ecs, ecrをまずはやる
+# AWSハンズオン
