@@ -7,6 +7,17 @@
 - VPCの作成
 - セキュリティグループの作成
 - VPCエンドポイントの作成
+- Route53 ACM
+- ALB・ターゲットグループの作成
+- ECRの作成 & Docker push
+- ECSクラスター作成・タスク定義
+- ECSサービスの作成・実行
+- RDSの作成
+- CodePipelineとは
+- CodePipeline事前準備
+- CodeBuildプロジェクトの作成
+- CodeDeployアプリケーションの作成
+- CodePipelineの設定
 
 ## VPCの作成
 - VPCなどの作成を選択して以下作成
