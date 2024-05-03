@@ -7,5 +7,6 @@
 - YouTubeクラインのlambdaハンズオン
 ### zenn-ecs-fargate-codepipeline-rds
 - ZennにあるAWS ECS + Fargate + CodePipeline + RDSでバックエンドサービス基盤を作るという教材
-### lambda-practice(予定)
-- 実践lambda教材
+### lambda-practice-guide
+- 以下の本の内容
+- aws lambda実践ガイド アーキテクチャとイベント駆動型プログラミング
